@@ -1,37 +1,41 @@
-<html lang="en">
-  <head>
-    <title>Digital Clock</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <style>
-      body {
-    background: linear-gradient(45deg, #ff0000, #003cff);
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Digital Clock</title>
+  <style>
+    .clock {
+  font-size: 4em;
+  text-align: center;
+  padding-top: 20px;
 }
 
-.clock {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    color: 
-#ffffff;
-    font-size: 160px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    letter-spacing: 7px;
-      </style>
-  </head>
-  <body>
-    <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
-    function showTime() {
-    let date = new Date();
-    let h = date.getHours(); // 0 - 23
-    let m = date.getMinutes(); // 0 - 59
-    let s = date.getSeconds(); // 0 - 59
-    let session = "AM";
-
-    
-  
+#time {
+  font-weight: bold;
 }
-    </script>
-  </body>
+  </style>
+</head>
+<body>
+  <div class="clock">
+    <div id="time">00:00:00</div>
+  </div>
+  <script>
+    function updateTime() {
+  const now = new Date();
+  let hours = now.getHours();
+  let minutes = now.getMinutes();
+  let seconds = now.getSeconds();
+
+  // Add leading zeros if needed
+  hours = hours < 10 ? "0" + hours : hours;
+  minutes = minutes < 10 ? "0" + minutes : minutes;
+  seconds = seconds < 10 ? "0" + seconds : seconds;
+
+  const timeString = `${hours}:${minutes}:${seconds}`;
+  document.getElementById("time").textContent = timeString;
+}
+
+// Update the time every second
+setInterval(updateTime, 1000);
+  </script>
+</body>
 </html>
